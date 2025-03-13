@@ -153,8 +153,8 @@ class Downloadproxies():
 
     def get(self):
         self.proxy_dict['socks4'] += self.get_special1()
-        #self.get_special2()
-        self.get_extra()
+        self.get_special2()
+        #self.get_extra()
         
         for type in ['socks4','socks5','http']:
             for api in self.api[type]:
