@@ -154,7 +154,7 @@ class Downloadproxies():
     def get(self):
         self.proxy_dict['socks4'] += self.get_special1()
         #self.get_special2()
-        #self.get_extra()
+        self.get_extra()
         
         for type in ['socks4','socks5','http']:
             for api in self.api[type]:
@@ -174,7 +174,8 @@ class Downloadproxies():
         for q in range(20):
             self.count = {'http':0,'socks5':0}
             self.day = datetime.date.today() + datetime.timedelta(-q)
-            self.r = requests.get('https://checkerproxy.net/api/archive/{}-{}-{}'.format(self.day.year,self.day.month,self.day.day))
+            #self.r = requests.get('https://checkerproxy.net/api/archive/{}-{}-{}'.format(self.day.year,self.day.month,self.day.day))
+            #self.r = requests.get('https://178.132.0.25/api/archive/{}-{}-{}'.format(self.day.year,self.day.month,self.day.day))
             if self.r.text != '[]': 
                 self.json_result = json.loads(self.r.text)
                 for i in self.json_result:
