@@ -25,10 +25,19 @@ jobs:
       - name: Get proxies
         run: |
            python getproxy.py
-           python checkproxy.py 128
+           python checkproxy.py 1024
 
-      - name: Commit & Push changes
-        uses: actions-js/push@master
-        #uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Commit files
+        run: |
+          git config --local user.email "murongpig@foxmail.com"
+          git config --local user.name "MuRongPIG"
+          git add -A
+          git commit -m "Update Proxies (`date '+%F %H:%M %Z'`)" -a
+          git branch -u origin/main
+          
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }} 
+          github_token: ${{ secrets.TOKEN_GITHUB }}
+          branch: main 
+          force: true
